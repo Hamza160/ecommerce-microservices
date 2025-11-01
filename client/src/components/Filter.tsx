@@ -1,11 +1,11 @@
 "use client"
 import React from 'react';
-import {useParams, useRouter, useSearchParams} from "next/navigation";
+import {useParams, usePathname, useRouter, useSearchParams} from "next/navigation";
 
 const Filter = () => {
     const searchParams = useSearchParams();
     const router = useRouter();
-    const pathname = useParams();
+    const pathname = usePathname();
     const handleFilter = (value: string) => {
         const params = new URLSearchParams(searchParams);
         params.set("sort", value);

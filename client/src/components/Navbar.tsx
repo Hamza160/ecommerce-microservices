@@ -2,11 +2,12 @@ import React from 'react';
 import Link from "next/link";
 import Image from "next/image";
 import SearchBar from "@/components/SearchBar";
-import {BellIcon, HomeIcon, ShoppingCart} from "lucide-react";
+import {BellIcon, HomeIcon} from "lucide-react";
+import ShoppingCart from "@/components/ShoppingCart";
 
 const Navbar = () => {
     return (
-        <nav className="flex items-center justify-between border-b border-gray-200 pb-4">
+        <nav className="flex items-center justify-between border-b border-gray-200 p-4">
             {/* Left */}
             <Link href="/" className={"flex items-center"}>
                 <Image
@@ -25,7 +26,7 @@ const Navbar = () => {
                     <HomeIcon className="w-4 h-4 text-gray-600"/>
                 </Link>
                 <BellIcon className="w-4 h-4 text-gray-600"/>
-                <ShoppingCart className="w-4 h-4 text-gray-600"/>
+                <ShoppingCart/>
                 <Link href="/login">
                     Sign in
                 </Link>
