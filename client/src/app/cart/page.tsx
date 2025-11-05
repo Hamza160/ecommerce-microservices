@@ -149,7 +149,8 @@ export default function CartPage() {
                     }
                 </div>
                 {/*  Details  */}
-                <div className="w-full lg:w-5/12 shadow-lg border broder-gray-100 p-8 rounded-lg flex flex-col gap-8 h-max">
+                <div
+                    className="w-full lg:w-5/12 shadow-lg border broder-gray-100 p-8 rounded-lg flex flex-col gap-8 h-max">
                     <h2 className="font-semibold">Cart Details</h2>
                     <div className="flex flex-col gap-4">
                         <div className="flex justify-between items-center text-sm ">
