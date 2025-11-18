@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import {CartItemsType, CartItemType} from "@/types";
+import {CartItemsType, CartItemType, ShippingFormInputs} from "@/types";
 import {useParams, usePathname, useRouter, useSearchParams} from "next/navigation";
 import {ArrowRightIcon, Trash, Trash2Icon} from "lucide-react";
 import ShippingForm from "@/components/ShippingForm";
@@ -14,11 +14,11 @@ const steps = [
     },
     {
         id: 2,
-        title: "Payment Method"
+        title: "Shipping Address",
     },
     {
         id: 3,
-        title: "Shipping Address"
+        title: "Payment Method"
     }
 ]
 
@@ -81,10 +81,10 @@ const cartItems: CartItemsType = [
 export default function CartPage() {
     const searchParams = useSearchParams();
     const router = useRouter();
-    const [shippingForm, setShippingForm] = React.useState(null);
+    const [shippingForm, setShippingForm] = React.useState<ShippingFormInputs>();
 
     const activeStep = Number(searchParams.get('step') || 1)
-
+    console.log({activeStep, shippingForm})
     return (
         <div className="flex flex-col gap-8 items-center justify-center mt-12">
             {/* Title */}
