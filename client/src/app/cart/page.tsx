@@ -6,6 +6,7 @@ import {ArrowRightIcon, Trash, Trash2Icon} from "lucide-react";
 import ShippingForm from "@/components/ShippingForm";
 import PaymentForm from "@/components/PaymentForm";
 import Image from "next/image";
+import useCartStore from "@/stores/cartStore";
 
 const steps = [
     {
@@ -82,7 +83,7 @@ export default function CartPage() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const [shippingForm, setShippingForm] = React.useState<ShippingFormInputs>();
-
+    const {cart, removeFromCart} = useCartStore();
     const activeStep = Number(searchParams.get('step') || 1)
     console.log({activeStep, shippingForm})
     return (
@@ -107,9 +108,9 @@ export default function CartPage() {
                 {/*  Steps  */}
                 <div className="w-full lg:w-7/12 shadow-lg border broder-gray-100 p-8 rounded-lg flex flex-col gap-8">
                     {activeStep === 1 ? (
-                            cartItems.map((item, i) => (
+                            cart.map((item, i) => (
                                 // Single Cart Item
-                                <div className="flex items-center justify-between" key={item.id}>
+                                <div className="flex items-center justify-between" key={item.id+item.selectedSize+item.selectedSize}>
                                     {/* Image and Details */}
                                     <div className='flex gap-8'>
                                         {/*Image*/}
@@ -134,6 +135,7 @@ export default function CartPage() {
                                     </div>
                                     {/* Delete Button   */}
                                     <button
+                                        onClick={() => removeFromCart(item)}
                                         className="w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 transition-all duration-500 text-red-400 flex items-center justify-center cursor-pointer">
                                         <Trash2Icon className="w-3 h-3"/>
                                     </button>
@@ -155,7 +157,7 @@ export default function CartPage() {
                     <div className="flex flex-col gap-4">
                         <div className="flex justify-between items-center text-sm ">
                             <p className="text-gray-500">Subtotal</p>
-                            <p className="font-medium">${cartItems.reduce((acc: number, item) => acc + item.price * item.quantity, 0).toFixed(2)}</p>
+                            <p className="font-medium">${cart.reduce((acc: number, item) => acc + item.price * item.quantity, 0).toFixed(2)}</p>
                         </div>
                         <div className="flex justify-between items-center text-sm ">
                             <p className="text-gray-500">Discount(10%)</p>
@@ -168,7 +170,7 @@ export default function CartPage() {
                         <hr className="border-gray-200"/>
                         <div className="flex justify-between items-center">
                             <p className="text-gray-800 font-semibold">Total</p>
-                            <p className="font-medium">${cartItems.reduce((acc: number, item) => acc + item.price * item.quantity, 0).toFixed(2)}</p>
+                            <p className="font-medium">${cart.reduce((acc: number, item) => acc + item.price * item.quantity, 0).toFixed(2)}</p>
                         </div>
                     </div>
                     {activeStep === 1 && (
