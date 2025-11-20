@@ -25,7 +25,6 @@ type ProductProps = {
     searchParams: Promise<{ size: string; color: string }>
 }
 export default async function page({params, searchParams}: ProductProps) {
-    const {id} = await params;
     const {size, color} = await searchParams;
 
     const selectedSize = (size || product.sizes[0] as string);
@@ -48,7 +47,7 @@ export default async function page({params, searchParams}: ProductProps) {
                 <p className="text-gray-500">{product.description}</p>
                 <h2 className="text-2xl font-semibold">${product.price.toFixed(2)}</h2>
                 {/*interactions*/}
-                <ProductInteraction product={product} />
+                <ProductInteraction product={product} selectedSize={selectedSize} selectedColor={selectedColor}/>
                 {/*Card Info*/}
                 <div className="flex items-center gap-2 mt-4">
                     <Image src="/klarna.png" alt="klarna" width={50} height={25} className="rounded-md"/>
