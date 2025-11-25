@@ -17,10 +17,6 @@ import {Progress} from "@/components/ui/progress";
 import {Badge} from "@/components/ui/badge";
 import {
     Sheet,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
 import EditUser from "@/components/EditUser";
@@ -30,18 +26,18 @@ import React from "react";
 import {MultipleLineChart} from "@/components/MultipleLineChart";
 
 interface Props {
-    params: Promise<{ username: string }>
+    params: Promise<{ id: string }>
 }
 
 export async function generateMetadata({params}: Props): Promise<{ title: string }> {
-    const {username} = await params
+    const {id} = await params
     return {
-        title: `User ${username}`,
+        title: `User ${id}`,
     }
 }
 
 export default async function SingleUser({params}: Props) {
-    const {username} = await params;
+    const {id} = await params;
     return (
         <div>
             <Breadcrumb>
@@ -55,7 +51,7 @@ export default async function SingleUser({params}: Props) {
                     </BreadcrumbItem>
                     <BreadcrumbSeparator/>
                     <BreadcrumbItem>
-                        <BreadcrumbPage>{username}</BreadcrumbPage>
+                        <BreadcrumbPage>{id}</BreadcrumbPage>
                     </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>
@@ -131,8 +127,8 @@ export default async function SingleUser({params}: Props) {
                                 <Progress value={33}/>
                             </div>
                             <div className="flex items-center gap-2">
-                                <span className="font-bold">Username:</span>
-                                <span>{username}</span>
+                                <span className="font-bold">Full Name:</span>
+                                <span>John Doe</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <span className="font-bold">Email:</span>
@@ -143,8 +139,8 @@ export default async function SingleUser({params}: Props) {
                                 <span>+923110767466</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <span className="font-bold">Location:</span>
-                                <span>New York, NY</span>
+                                <span className="font-bold">Address:</span>
+                                <span>123 Main, St</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <span className="font-bold">Role:</span>
@@ -153,10 +149,7 @@ export default async function SingleUser({params}: Props) {
                         </div>
                         <p className="text-sm text-muted-foreground mt-2">Joined on 2025.01.01</p>
                     </div>
-                    {/*   Card List Container */}
-                    <div className="bg-primary-foreground p-4 rounded-lg">
-                        <CardList title={"Recent Transactions"}/>
-                    </div>
+
                 </div>
                 {/*  Right  */}
                 <div className="w-full xl:w-2/3 space-y-6">
