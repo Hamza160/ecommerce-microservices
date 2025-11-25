@@ -95,7 +95,7 @@ const ProductInteraction = ({product, selectedSize, selectedColor}: {
                     <span>{quantity}</span>
                     <button
                         className="cursor-pointer border-1 border-gray-300 p-1"
-                        onClick={() => handleQuantityChange("decrement")}
+                        onClick={() => handleQuantityChange("increment")}
                     >
                         <PlusIcon className="w-4 h-4" />
                     </button>

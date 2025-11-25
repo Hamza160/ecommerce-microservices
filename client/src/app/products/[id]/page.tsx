@@ -1,3 +1,4 @@
+import type {Metadata} from 'next';
 import React from 'react';
 import {ProductType} from "@/types";
 import Image from "next/image";
@@ -19,6 +20,15 @@ const product: ProductType = {
         green: "/products/1gr.png",
     },
 };
+
+export const generateMetadata = async ({params}: { params: Promise<{ id: string }> }) => {
+    const {id} = await params;
+    console.log(id);
+    return {
+        title: product.name,
+        description: product.description,
+    }
+}
 
 type ProductProps = {
     params: Promise<{ id: string }>
